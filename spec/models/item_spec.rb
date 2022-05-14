@@ -22,9 +22,9 @@ RSpec.describe Item, type: :model do
       expect(subject).to_not be_valid
     end
 
-    it "is not valid without a count" do
+    it "is valid without a count" do
       subject.count = nil
-      expect(subject).to_not be_valid
+      expect(subject).to be_valid
     end
 
     it "is valid without a count of 0" do
