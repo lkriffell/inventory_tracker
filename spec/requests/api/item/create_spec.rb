@@ -5,7 +5,7 @@ RSpec.describe "Items", type: :request do
     it "Can be created" do
       expect(Item.all.size).to eq(0)
 
-      get "/items", params: {
+      post "/items", params: {
         item: {
           name: "Guitar",
           weight_lb: 5,
@@ -21,12 +21,18 @@ RSpec.describe "Items", type: :request do
       expect(item.name).to eq("Guitar")
       expect(item.weight_lb).to eq(5)
       expect(item.count).to eq(1)
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json[:name]).to eq("Guitar")
+      expect(json[:weight_lb]).to eq(5)
+      expect(json[:count]).to eq(1)
     end
 
     it "Can be created without count" do
       expect(Item.all.size).to eq(0)
 
-      get "/items", params: {
+      post "/items", params: {
         item: {
           name: "Guitar",
           weight_lb: 5
@@ -37,12 +43,18 @@ RSpec.describe "Items", type: :request do
 
       item = Item.first
       expect(item.count).to eq(nil)
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json[:name]).to eq("Guitar")
+      expect(json[:weight_lb]).to eq(5)
+      expect(json[:count]).to eq(nil)
     end
 
     it "Cannot be created without name" do
       expect(Item.all.size).to eq(0)
 
-      get "/items", params: {
+      post "/items", params: {
         item: {
           weight_lb: 5,
           count: 1
@@ -50,12 +62,16 @@ RSpec.describe "Items", type: :request do
       }
 
       expect(Item.all.size).to eq(0)
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json[:errors]).to eq(["Name can't be blank"])
     end
 
     it "Cannot be created without weight_lb" do
       expect(Item.all.size).to eq(0)
 
-      get "/items", params: {
+      post "/items", params: {
         item: {
           name: "Guitar",
           count: 1
@@ -63,6 +79,10 @@ RSpec.describe "Items", type: :request do
       }
 
       expect(Item.all.size).to eq(0)
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json[:errors]).to eq(["Weight lb can't be blank"])
     end
   end
 end
