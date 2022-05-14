@@ -5,7 +5,7 @@ RSpec.describe "Items", type: :request do
     it "Can be created" do
       expect(Item.all.size).to eq(0)
 
-      get "/items", params: {
+      post "/items", params: {
         item: {
           name: "Guitar",
           weight_lb: 5,
@@ -26,7 +26,7 @@ RSpec.describe "Items", type: :request do
     it "Can be created without count" do
       expect(Item.all.size).to eq(0)
 
-      get "/items", params: {
+      post "/items", params: {
         item: {
           name: "Guitar",
           weight_lb: 5
@@ -42,7 +42,7 @@ RSpec.describe "Items", type: :request do
     it "Cannot be created without name" do
       expect(Item.all.size).to eq(0)
 
-      get "/items", params: {
+      post "/items", params: {
         item: {
           weight_lb: 5,
           count: 1
@@ -55,7 +55,7 @@ RSpec.describe "Items", type: :request do
     it "Cannot be created without weight_lb" do
       expect(Item.all.size).to eq(0)
 
-      get "/items", params: {
+      post "/items", params: {
         item: {
           name: "Guitar",
           count: 1
