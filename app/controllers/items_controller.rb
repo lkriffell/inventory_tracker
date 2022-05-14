@@ -16,6 +16,15 @@ class ItemsController < ApplicationController
       render json: {"Message": "No items to present"}
     end
   end
+
+  def edit
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      render json: @item
+    else
+      render json: {"errors": @item.errors.full_messages}
+    end
+  end
   
   private
 
