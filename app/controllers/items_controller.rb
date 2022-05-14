@@ -3,6 +3,8 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       render json: @item
+    else
+      render json: {"errors": @item.errors.full_messages}
     end
   end
 
