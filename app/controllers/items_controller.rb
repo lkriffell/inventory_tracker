@@ -6,6 +6,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def index
+    @items = Item.all
+    render json: @items
+  end
+  
   private
 
   def item_params
