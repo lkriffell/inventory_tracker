@@ -10,7 +10,11 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
-    render json: @items
+    if @items.size > 0
+      render json: @items
+    else
+      render json: {"Message": "No items to present"}
+    end
   end
   
   private
