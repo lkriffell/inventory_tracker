@@ -22,5 +22,15 @@ RSpec.describe "Items", type: :request do
       expect(json[2][:name]).to eq("Iphone")
       expect(json[3][:name]).to eq("Tractor")
     end
+
+    it "Can get list of 0 items" do
+      expect(Item.all.size).to eq(0)
+
+      get '/items'
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json).to eq("Message": "No items to present")
+    end
   end
 end
