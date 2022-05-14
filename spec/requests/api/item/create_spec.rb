@@ -21,6 +21,12 @@ RSpec.describe "Items", type: :request do
       expect(item.name).to eq("Guitar")
       expect(item.weight_lb).to eq(5)
       expect(item.count).to eq(1)
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json[:name]).to eq("Guitar")
+      expect(json[:weight_lb]).to eq(5)
+      expect(json[:count]).to eq(1)
     end
 
     it "Can be created without count" do
@@ -37,6 +43,12 @@ RSpec.describe "Items", type: :request do
 
       item = Item.first
       expect(item.count).to eq(nil)
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json[:name]).to eq("Guitar")
+      expect(json[:weight_lb]).to eq(5)
+      expect(json[:count]).to eq(nil)
     end
 
     it "Cannot be created without name" do
@@ -50,6 +62,10 @@ RSpec.describe "Items", type: :request do
       }
 
       expect(Item.all.size).to eq(0)
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json[:errors]).to eq(["Name can't be blank"])
     end
 
     it "Cannot be created without weight_lb" do
@@ -63,6 +79,10 @@ RSpec.describe "Items", type: :request do
       }
 
       expect(Item.all.size).to eq(0)
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json[:errors]).to eq(["Weight lb can't be blank"])
     end
   end
 end
