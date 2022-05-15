@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2022_05_15_153305) do
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.float "weight_lb"
-    t.integer "count"
+    t.integer "count", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "warehouse_id"
