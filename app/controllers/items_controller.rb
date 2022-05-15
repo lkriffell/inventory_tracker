@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    if @item.update(item_params)
+    if @item.update(strict_item_params)
       render json: @item
     else
       render json: {"errors": @item.errors.full_messages}
@@ -29,6 +29,10 @@ class ItemsController < ApplicationController
   private
 
   def item_params
+    params.permit(:name, :weight_lb, :count)
+  end
+
+  def strict_item_params
     params.require(:item).permit(:name, :weight_lb, :count)
   end
 end
