@@ -4,7 +4,7 @@ RSpec.describe "Items", type: :request do
   describe "Index Spec:" do
     it "Can get list of all items" do
       expect(Item.all.size).to eq(0)
-
+ 
       Item.create(name:"Donut", weight_lb:0.5)
       Item.create(name:"Hat", weight_lb:0.25)
       Item.create(name:"Iphone", weight_lb:1)
