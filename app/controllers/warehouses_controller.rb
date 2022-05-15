@@ -8,6 +8,17 @@ class WarehousesController < ApplicationController
     end
   end
   
+  def add_item
+    @warehouse = Warehouse.find(params[:id])
+    @item = Item.find(params[:item_id])
+    if @warehouse.can_add_item_to_warehouse?(@item)
+      @warehouse.items << @item
+      render json: @warehouse, include: :items
+    else
+      render json: {"errors": "Item takes warehouse over capactiy. Capactiy: #{@warehouse.capacity}, items: #{@item.count}"}
+    end
+  end
+
   private
 
   def warehouse_params
