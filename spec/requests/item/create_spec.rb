@@ -5,12 +5,10 @@ RSpec.describe "Items", type: :request do
     it "Can be created" do
       expect(Item.all.size).to eq(0)
 
-      post "/items", params: {
-        item: {
-          name: "Guitar",
-          weight_lb: 5,
-          count: 1
-        }
+      get "/items/new", params: {
+        name: "Guitar",
+        weight_lb: 5,
+        count: 1
       }
 
       expect(Item.all.size).to eq(1)
@@ -32,11 +30,9 @@ RSpec.describe "Items", type: :request do
     it "Count is 1 when no count specified" do
       expect(Item.all.size).to eq(0)
 
-      post "/items", params: {
-        item: {
-          name: "Guitar",
-          weight_lb: 5
-        }
+      get "/items/new", params: {
+        name: "Guitar",
+        weight_lb: 5
       }
 
       expect(Item.all.size).to eq(1)
@@ -54,11 +50,9 @@ RSpec.describe "Items", type: :request do
     it "Cannot be created without name" do
       expect(Item.all.size).to eq(0)
 
-      post "/items", params: {
-        item: {
-          weight_lb: 5,
-          count: 1
-        }
+      get "/items/new", params: {
+        weight_lb: 5,
+        count: 1
       }
 
       expect(Item.all.size).to eq(0)
@@ -71,11 +65,9 @@ RSpec.describe "Items", type: :request do
     it "Cannot be created without weight_lb" do
       expect(Item.all.size).to eq(0)
 
-      post "/items", params: {
-        item: {
-          name: "Guitar",
-          count: 1
-        }
+      get "/items/new", params: {
+        name: "Guitar",
+        count: 1
       }
 
       expect(Item.all.size).to eq(0)

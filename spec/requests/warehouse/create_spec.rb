@@ -5,7 +5,7 @@ RSpec.describe "Warehouses", type: :request do
     it "Can be created" do
       expect(Item.all.size).to eq(0)
 
-      post "/warehouses", params: {
+      get "/warehouses/new", params: {
         warehouse: {
           name: "Amazon Distribution Center",
           location: "1234 AMZN Way",
@@ -32,7 +32,7 @@ RSpec.describe "Warehouses", type: :request do
     it "Cannot be created without name" do
       expect(Item.all.size).to eq(0)
 
-      post "/warehouses", params: {
+      get "/warehouses/new", params: {
         warehouse: {
           location: "1234 AMZN Way",
           capacity: 10000
@@ -49,7 +49,7 @@ RSpec.describe "Warehouses", type: :request do
     it "Cannot be created without location" do
       expect(Item.all.size).to eq(0)
 
-      post "/warehouses", params: {
+      get "/warehouses/new", params: {
         warehouse: {
           name: "Amazon Distribution Center",
           capacity: 10000
@@ -66,7 +66,7 @@ RSpec.describe "Warehouses", type: :request do
     it "Cannot be created without capacity" do
       expect(Item.all.size).to eq(0)
 
-      post "/warehouses", params: {
+      get "/warehouses/new", params: {
         warehouse: {
           name: "Amazon Distribution Center",
           location: "1234 AMZN Way"
