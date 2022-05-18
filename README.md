@@ -46,8 +46,8 @@
   - `/items/:id/edit`
     - Edit an item by it's id with the specified arguments
     - URI Arguments: <br>
-          `argument :name, String, required: true`<br>
-          `argument :weight_lb, Float, required: true`<br>
+          `argument :name, String, required: false`<br>
+          `argument :weight_lb, Float, required: false`<br>
           `argument :count, Integer, required: false`<br>
           `argument :warehouse_id, Integer, required: false`<br>
 
