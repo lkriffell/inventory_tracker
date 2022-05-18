@@ -36,6 +36,7 @@
     
   - `/items/new`
     - Create a new item with the specified arguments
+    - Returns the created item
     - URI Arguments: <br>
           `argument :name, String, required: true`<br>
           `argument :weight_lb, Float, required: true`<br>
@@ -45,6 +46,7 @@
 
   - `/items/:id/edit`
     - Edit an item by it's id with the specified arguments
+    - Returns the edited item
     - URI Arguments: <br>
           `argument :name, String, required: false`<br>
           `argument :weight_lb, Float, required: false`<br>
@@ -54,6 +56,7 @@
 ## Warehouses
   - `/warehouses/new`
     - Create a new warehouse with the specified arguments
+    - Returns the created warehouse
     - URI Arguments: <br>
           `argument :name, String, required: true`<br>
           `argument :location, String, required: true`<br>
@@ -62,6 +65,7 @@
 
   - `/warehouses/:id/add_item/:item_id`
     - Add an item to a warehouse based on the warehouse's id and the item's id 
+    - Returns the warehouse along with the items stored there
 
 # Database Schema
 <img src="app/assets/images/db_diagram.png" alt="diagram" max-width="100"><br>
