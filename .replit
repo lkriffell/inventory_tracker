@@ -1,7 +1,5 @@
 run = """
-cd..
-bundle
-cd ${REPL_SLUG}
+bundle --path
 rails server --binding=0.0.0.0
 """
 
