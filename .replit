@@ -1,5 +1,7 @@
 run = """
 bundle --path
+rails db:migrate
+rails db:seed
 rails server --binding=0.0.0.0
 """
 
